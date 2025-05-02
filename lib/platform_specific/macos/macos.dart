@@ -1,20 +1,52 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:iptvChecker/platform_interface.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import '../../models/channel_test_result.dart';
+import '../../models/channel_tester.dart';
 
 class MacosPlatform extends PlatformInterface {
+  /// 测试给定的电视频道URL是否有效
+  ///
+  /// 使用ffprobe工具检测流媒体URL的有效性
+  /// 注意：需要确保应用有网络访问权限
+  /// 
+  /// 参数:
+  ///   url - 要测试的电视频道URL
+  ///
+  /// 返回值:
+  ///   返回Future<ChannelTestResult>，包含详细测试信息
   @override
-  Future<bool> testChannel(String url) async {
+  Future<ChannelTestResult> testChannel(String url) async {
     try {
-      final client = HttpClient();
-      final request = await client.getUrl(Uri.parse(url));
-      final response = await request.close();
-      
-      // 检查HTTP状态码，2xx和3xx视为有效
-      return response.statusCode >= 200 && response.statusCode < 400;
+      // 获取ffprobe路径
+      final resourcePath = await MethodChannel('flutter/native').invokeMethod('getResourcePath');
+      ChannelTester tester = ChannelTester(ffprobePath: '$resourcePath/ffprobe', url: url);
+      final testResult = await tester.testChannel();
+      print('测试结果: $testResult');
+      return testResult;
     } catch (e) {
-      return false;
+      if (e.toString().contains('Operation not permitted') || 
+          e.toString().contains('Permission denied')) {
+        print('测试频道失败: 网络权限受限，请确保应用有网络访问权限');
+        print('详细错误: $e');
+        return ChannelTestResult(
+          available: false,
+          error: '网络权限受限: $e',
+          elapsedMs: 0,
+        );
+      } else {
+        print('测试频道失败: $e');
+        return ChannelTestResult(
+          available: false,
+          error: e.toString(),
+          elapsedMs: 0,
+        );
+      }
     }
   }
   static void showSystemUI() {
@@ -27,77 +59,15 @@ class MacosPlatform extends PlatformInterface {
     print('Managing MacOS window');
   }
   
-  @override
-   Future<Map<String, dynamic>> getMediaInfo(String filePath) async {
-    try {
-      final result = await Process.run('ffprobe', [
-        '-v', 'error',
-        '-show_format',
-        '-show_streams',
-        '-show_frames',
-        '-select_streams', 'v',
-        '-show_entries', 'frame=pkt_pts_time,pict_type',
-        '-of', 'json',
-        filePath
-      ]);
-      
-      if (result.exitCode != 0) {
-        throw Exception('FFprobe执行失败: ${result.stderr}');
-      }
-      
-      final videoData = jsonDecode(result.stdout);
-      
-      // 获取缩略图
-      final thumbResult = await Process.run('ffmpeg', [
-        '-i', filePath,
-        '-vf', 'thumbnail,scale=320:-1',
-        '-frames:v', '5',
-        '-f', 'image2',
-        '-y', '/tmp/thumb-%03d.jpg'
-      ]);
-      
-      // 获取比特率历史
-      final bitrateResult = await Process.run('ffprobe', [
-        '-v', 'error',
-        '-show_frames',
-        '-select_streams', 'v',
-        '-show_entries', 'frame=pkt_size,pkt_pts_time',
-        '-of', 'json',
-        filePath
-      ]);
-      
-      final audioResult = await Process.run('ffprobe', [
-        '-v', 'error',
-        '-show_frames',
-        '-select_streams', 'a',
-        '-show_entries', 'frame=pkt_pts_time,sample_fmt',
-        '-of', 'json',
-        filePath
-      ]);
-      
-      if (audioResult.exitCode != 0) {
-        throw Exception('FFprobe音频分析失败: ${audioResult.stderr}');
-      }
-      
-      final audioData = jsonDecode(audioResult.stdout);
-      
-      // 计算比特率历史
-      final bitrateData = jsonDecode(bitrateResult.stdout);
-      final bitrateHistory = bitrateData['frames']?.map<double>((frame) {
-        return (frame['pkt_size'] * 8) / (frame['pkt_pts_time'] ?? 1);
-      }).toList();
-      
-      return {
-        'video': videoData,
-        'audio': audioData,
-        'format': videoData['format'],
-        'thumbnails': thumbResult.exitCode == 0 ? 
-          List.generate(5, (i) => '/tmp/thumb-${i.toString().padLeft(3, '0')}.jpg') : null,
-        'bitrate_history': bitrateHistory,
-      };
-    } catch (e) {
-      throw Exception('获取媒体信息失败: $e');
-    }
+
+  /// 验证流媒体数据是否包含有效的视频或音频流
+  bool _verifyStream(Map<String, dynamic> probeData) {
+    // 检查是否存在流数据
+    if (probeData['streams'] == null) return false;
+    
+    // 检查是否有视频或音频流
+    return probeData['streams'].any((stream) => 
+      stream['codec_type'] == 'video' || stream['codec_type'] == 'audio');
   }
   
   @override

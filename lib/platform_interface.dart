@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:iptvChecker/models/channel_test_result.dart';
 import 'package:iptvChecker/platform_specific/linux/linux.dart';
 import 'package:iptvChecker/platform_specific/macos/macos.dart';
 import 'dart:async';
@@ -30,9 +31,7 @@ abstract class PlatformInterface {
     throw UnimplementedError('manageWindow() has not been implemented.');
   }
   
-  // 获取媒体信息
-  Future<Map<String, dynamic>> getMediaInfo(String filePath);
-  
+
   // 验证FFprobe路径
   static Future<bool> validateFFprobePath(String path) {
     throw UnimplementedError('validateFFprobePath() has not been implemented.');
@@ -49,7 +48,7 @@ abstract class PlatformInterface {
   }
   
   // 测试频道URL有效性
-  Future<bool> testChannel(String url);
+  Future<ChannelTestResult> testChannel(String url);
   
   static Future<Map<String, dynamic>> getStreamInfo(String url) {
     throw UnimplementedError('getStreamInfo() has not been implemented.');

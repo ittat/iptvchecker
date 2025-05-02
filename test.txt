@@ -1,0 +1,62 @@
+➜  ~ /Users/hardy/Downloads/ffprobe  -print_format json -show_format -show_streams -show_error https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/main.m3u8
+ffprobe version N-119382-gd11d4277f9-tessus  https://evermeet.cx/ffmpeg/  Copyright (c) 2007-2025 the FFmpeg developers
+  built with Apple clang version 17.0.0 (clang-1700.0.13.3)
+  configuration: --cc=/usr/bin/clang --prefix=/opt/ffmpeg --extra-version=tessus --enable-avisynth --enable-fontconfig --enable-gpl --enable-libaom --enable-libass --enable-libbluray --enable-libdav1d --enable-libfreetype --enable-libgsm --enable-libharfbuzz --enable-libmodplug --enable-libmp3lame --enable-libmysofa --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenh264 --enable-libopenjpeg --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvmaf --enable-libvo-amrwbenc --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-version3 --pkg-config-flags=--static --disable-ffplay
+  libavutil      60.  2.100 / 60.  2.100
+  libavcodec     62.  1.102 / 62.  1.102
+  libavformat    62.  0.102 / 62.  0.102
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  0.100 / 11.  0.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+  libpostproc    59.  1.100 / 59.  1.100
+{
+mime type is not rfc8216 compliant
+[hls @ 0x7fa730905980] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Transcode_audio_en_stereo32w441_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Transcode_audio_en_stereo64_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Transcode_audio_en_stereo160_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Transcodeaudio_en_surround51dd_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Transcode_audio_full_en_atmos_0_1-en_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobca103e1c-625a-4cbc-ad9f-ffd8c6b760de-107673271-Transcode_dvs_en_stereo32w441_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobca103e1c-625a-4cbc-ad9f-ffd8c6b760de-107673271-Transcode_dvs_en_stereo64_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobca103e1c-625a-4cbc-ad9f-ffd8c6b760de-107673271-Transcode_dvs_en_stereo160_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobca103e1c-625a-4cbc-ad9f-ffd8c6b760de-107673271-Transcodedvs_en_surround51dd_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobca103e1c-625a-4cbc-ad9f-ffd8c6b760de-107673271-Transcode_dvs_full_en_atmos_0_1-en_audio/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertforced_subtitles_vttv2_en_any-en/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsdh_vttv2_it_any-it/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsdh_vttv2_cmn-Hant_any-cmn-Hant/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsdh_vttv2_cmn-Hans_any-cmn-Hans/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job7fd5dc08-5172-4910-b0e3-195f63fe6ef5-107660331-Convertsdh_vttv2_en_any-en/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_it_any-it/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_fr-FR_any-fr-FR/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_fr-CA_any-fr-CA/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_es-ES_any-es-ES/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_es-419_any-es-419/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_cmn-Hant_any-cmn-Hant/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Jobe9ecaff1-8802-4a35-a411-5d83d0d368e0-107675778-Convertsubtitles_vttv2_cmn-Hans_any-cmn-Hans/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job932393e2-1e4f-4fdb-ab59-0d201f752656-107660254-Convertsubtitles_vttv2_en_any-en/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls240/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls290/prog_index.m3u8' for reading
+    Last message repeated 1 times
+[hls @ 0x7fa730905980] URL https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls290/fileSequen is not in allowed_extensions
+[hls @ 0x7fa730905980] parse_playlist error Invalid data found when processing input [https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls290/prog_index.m3u8]
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls290/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls265/prog_index.m3u8' for reading
+    Last message repeated 1 times
+[hls @ 0x7fa730905980] URL https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls265/fi is not in allowed_extensions
+[hls @ 0x7fa730905980] parse_playlist error Invalid data found when processing input [https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls265/prog_index.m3u8]
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls265/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls260/prog_index.m3u8' for reading
+    Last message repeated 1 times
+[hls @ 0x7fa730905980] URL https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls260/fileSeq is not in allowed_extensions
+[hls @ 0x7fa730905980] parse_playlist error Invalid data found when processing input [https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls260/prog_index.m3u8]
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls260/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls250/prog_index.m3u8' for reading
+    Last message repeated 1 times
+[hls @ 0x7fa730905980] URL https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls250/fileSe is not in allowed_extensions
+[hls @ 0x7fa730905980] parse_playlist error Invalid data found when processing input [https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls250/prog_index.m3u8]
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls250/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls230/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls220/prog_index.m3u8' for reading
+[https @ 0x7fa708076600] Opening 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/Job2dae5735-d6ca-48ca-91be-0ec0bead535c-107702578-hls_bundle_hls210/prog_index.m3u8' for reading
+^C

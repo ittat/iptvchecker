@@ -1,78 +1,46 @@
-import 'package:flutter/material.dart';
-import 'package:iptvChecker/platform_interface.dart';
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
+import 'package:iptvChecker/platform_interface.dart';
+import '../../models/channel_test_result.dart';
+import '../../models/channel_tester.dart';
+import 'dart:io';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class LinuxPlatform extends PlatformInterface {
-  static void showSystemUI() {
-    // Linux平台显示系统UI逻辑
-    print('Showing Linux system UI');
-  }
-  
-  static void manageWindow() {
-    // Linux平台窗口管理逻辑
-    print('Managing Linux window');
-  }
-  
   @override
-  Future<Map<String, dynamic>> getMediaInfo(String filePath) async {
+  Future<ChannelTestResult> testChannel(String url) async {
     try {
-      final result = await Process.run('ffprobe', [
-        '-v', 'error',
-        '-show_format',
-        '-show_streams',
-        '-show_frames',
-        '-select_streams', 'v',
-        '-show_entries', 'frame=pkt_pts_time,pict_type',
-        '-show_entries', 'format=bit_rate,duration,size',
-        '-show_entries', 'stream=codec_name,width,height,avg_frame_rate',
-        '-of', 'json',
-        filePath
-      ]);
-      
-      if (result.exitCode != 0) {
-        throw Exception('FFprobe执行失败: ${result.stderr}');
+      final resourcePath = await _getResourcePath();
+      ChannelTester tester = ChannelTester(ffprobePath: '$resourcePath/ffprobe', url: url);
+      final testResult = await tester.testChannel();
+      print('测试结果: $testResult');
+      return testResult;
+    } catch (e) {
+      if (e.toString().contains('Operation not permitted') || 
+          e.toString().contains('Permission denied')) {
+        print('测试频道失败: 网络权限受限，请确保应用有网络访问权限');
+        print('详细错误: $e');
+        return ChannelTestResult(
+          available: false,
+          error: '网络权限受限: $e',
+          elapsedMs: 0,
+        );
+      } else {
+        print('测试频道失败: $e');
+        return ChannelTestResult(
+          available: false,
+          error: e.toString(),
+          elapsedMs: 0,
+        );
       }
-      
-      return jsonDecode(result.stdout);
-    } catch (e) {
-      throw Exception('获取媒体信息失败: $e');
     }
   }
-  
-  @override
-  Future<bool> validateFFprobePath(String path) async {
-    try {
-      final file = File(path);
-      if (!await file.exists()) return false;
-      
-      // 检查文件是否可执行
-
-      final result = await Process.run('chmod', ['+x', path]);
-      if (result.exitCode != 0) return false;
-      
-      final versionCheck = await Process.run(path, ['-version']);
-      return versionCheck.exitCode == 0;
-    } catch (e) {
-      return false;
-    }
+  Future<String> _getResourcePath() async {
+    // 这里假设有类似macos的资源路径获取逻辑
+    return await MethodChannel('flutter/native').invokeMethod('getResourcePath');
   }
   
-   @override
-  Future<bool> testChannel(String url) async {
-    try {
-
-      final client = HttpClient();
-      final request = await client.getUrl(Uri.parse(url));
-      final response = await request.close();
-      
-      // Check HTTP status code, 2xx and 3xx are considered valid
-      return response.statusCode >= 200 && response.statusCode < 400;
-  
-    
-    } catch (e) {
-      return false;
-    }
-  }
 
 }
